@@ -174,3 +174,7 @@ for animal in animals:
     animal.lie()
     animal.sleep()
     print()
+
+"""
+수정(1) / 2024-06-19 16:25
+"""
