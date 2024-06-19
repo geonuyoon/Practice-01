@@ -1,0 +1,176 @@
+"""
+Chapter 01. Practice1 "OOP"
+Written by Nohsan Kim @ NAMISNT
+2024-06-10
+"""
+
+# 동물 클래스 정의
+class Animal:
+    def __init__(self, height, weight):
+        self.__height = height
+        self.__weight = weight
+        self.__cls = "동물"
+
+    def set_class(self, name):  # 클래스 이름 설정 메서드
+        self.__cls = name
+        
+    def eat(self, food):  # 음식 먹기 메서드
+        print(f"{self.__cls}이(가) 음식({food})을 먹었습니다")
+
+    def sleep(self):  # 잠자기 메서드
+        print(f"{self.__cls}이(가) 잠을 잡니다")
+
+    def walk(self):  # 걷기 메서드
+        print(f"{self.__cls}이(가) 걷습니다")
+
+    def sit(self):  # 앉기 메서드
+        print(f"{self.__cls}이(가) 앉습니다")
+
+    def lie(self):  # 눕기 메서드
+        print(f"{self.__cls}이(가) 눕습니다")
+
+    def crying(self):  # 울기 메서드
+        print(f"{self.__cls}이(가) 웁니다")
+
+    def speak(self, word=None):  # 말하기 메서드
+        print(f"{self.__cls}은(는) 말할 수 없습니다.")
+
+    def write(self, word=None):  # 글쓰기 메서드
+        print(f"{self.__cls}은(는) 글을 쓸 수 없습니다.")
+
+    def bite(self):  # 물기 메서드
+        print(f"{self.__cls}은(는) 물 수 없습니다.")
+        
+    def set_weight(self, weight):  # 체중 설정 메서드
+        if weight <= 0:
+            print("체중값이 이상합니다.")
+        self.__weight = weight
+        print(f"{self.__cls}의 체중이 {self.__weight}으로 변경되었습니다.")
+
+    def get_weight(self):  # 체중 가져오기 메서드
+        return self.__weight
+
+    def get_height(self):  # 키 가져오기 메서드
+        return self.__height
+
+    def get_class(self):  # 클래스 이름 가져오기 메서드
+        return self.__cls
+
+# 사람 클래스 정의
+class Human(Animal):
+    def __init__(self, height, weight):
+        super().__init__(height, weight)
+        super().set_class("사람")
+        print("사람이 생성되었습니다.")
+
+    def eat(self, food):  # 사람의 음식 먹기 메서드
+        if food == "Grass":
+            print(f"{food}은(는) 사람이 먹을 수 없습니다.")
+            return
+        super().eat(food)
+        super().set_weight(super().get_weight() + 1)
+
+    def speak(self, word):  # 사람의 말하기 메서드
+        print(f"{self.get_class()}이(가) {word}라고 말합니다")
+
+    def write(self, word):  # 사람의 글쓰기 메서드
+        print(f"{self.get_class()}이(가) {word}라고 글을 씁니다.")
+
+# 소 클래스 정의
+class Cow(Animal):
+    def __init__(self, height, weight):
+        super().__init__(height, weight)
+        super().set_class("소")
+        print("소가 생성되었습니다.")
+    
+    def eat(self, food):  # 소의 음식 먹기 메서드
+        if food == "Rice":
+            print(f"{food}은(는) 소가 먹을 수 없습니다.")
+            return
+        super().eat(food)
+        super().set_weight(super().get_weight() + 0.1)
+
+# 얼룩말 클래스 정의
+class Zebra(Animal):
+    def __init__(self, height, weight):
+        super().__init__(height, weight)
+        super().set_class("얼룩말")
+        print("얼룩말이 생성되었습니다.")
+    
+    def eat(self, food):  # 얼룩말의 음식 먹기 메서드
+        if food == "Rice":
+            print(f"{food}은(는) 얼룩말이 먹을 수 없습니다.")
+            return
+        super().eat(food)
+        super().set_weight(super().get_weight() + 0.2)
+
+# 개 클래스 정의
+class Dog(Animal):
+    def __init__(self, height, weight):
+        super().__init__(height, weight)
+        super().set_class("개")
+        print("개가 생성되었습니다.")
+    
+    def eat(self, food):  # 개의 음식 먹기 메서드
+        if food in ["Rice", "Grass"]:
+            print(f"{food}은(는) 개가 먹을 수 없습니다.")
+            return
+        super().eat(food)
+        super().set_weight(super().get_weight() + 0.05)
+
+
+# 동물 객체 리스트
+animals = []
+
+# 사람 객체 생성 및 동작
+human = Human(180, 70)
+print(f"{human.get_class()}의 키는 {human.get_height()}입니다.")
+print(f"{human.get_class()}의 체중은 {human.get_weight()}입니다.")
+human.eat("Rice")
+human.eat("Grass")
+print(f"{human.get_class()}의 체중은 {human.get_weight()}입니다.")
+animals.append(human)
+print()
+
+# 소 객체 생성 및 동작
+cow = Cow(150, 200)
+print(f"{cow.get_class()}의 키는 {cow.get_height()}입니다.")
+print(f"{cow.get_class()}의 체중은 {cow.get_weight()}입니다.")
+cow.eat("Rice")
+cow.eat("Grass")
+print(f"{cow.get_class()}의 체중은 {cow.get_weight()}입니다.")
+animals.append(cow)
+print()
+
+# 얼룩말 객체 생성 및 동작
+zebra = Zebra(150, 170)
+print(f"{zebra.get_class()}의 키는 {zebra.get_height()}입니다.")
+print(f"{zebra.get_class()}의 체중은 {zebra.get_weight()}입니다.")
+zebra.eat("Rice")
+zebra.eat("Grass")
+print(f"{zebra.get_class()}의 체중은 {zebra.get_weight()}입니다.")
+animals.append(zebra)
+print()
+
+# 개 객체 생성 및 동작
+dog = Dog(20, 5)
+print(f"{dog.get_class()}의 키는 {dog.get_height()}입니다.")
+print(f"{dog.get_class()}의 체중은 {dog.get_weight()}입니다.")
+dog.eat("Rice")
+dog.eat("Grass")
+dog.eat("feed")
+print(f"{dog.get_class()}의 체중은 {dog.get_weight()}입니다.")
+animals.append(dog)
+print()
+
+# 각 동물 객체의 행동 출력
+for animal in animals:
+    animal.walk()
+    animal.speak("나는 말할 수 있다")
+    animal.write("나는 쓸 수 있다")
+    animal.crying()
+    animal.bite()
+    animal.sit()
+    animal.lie()
+    animal.sleep()
+    print()
